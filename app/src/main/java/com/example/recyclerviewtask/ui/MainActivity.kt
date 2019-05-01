@@ -1,9 +1,8 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.recyclerviewtask.R
 
 /**
  * Simple activity that hosts all other fragments.
@@ -18,7 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, WeatherForecastFragment()).commit()
+                .replace(
+                    R.id.fragment_container,
+                    WeatherForecastFragment.newInstance()
+                ).commit()
         }
     }
 }

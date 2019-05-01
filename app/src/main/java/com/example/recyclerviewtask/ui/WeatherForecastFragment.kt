@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 import android.app.Activity
 import android.content.Intent
@@ -14,8 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.example.recyclerviewtask.WeatherForecastFragment.*
-import com.example.recyclerviewtask.WeatherType.*
+import com.example.recyclerviewtask.utils.DataOperator
+import com.example.recyclerviewtask.R
+import com.example.recyclerviewtask.ui.WeatherForecastFragment.*
+import com.example.recyclerviewtask.model.WeatherType.*
+import com.example.recyclerviewtask.model.ItemWeatherForecast
+import com.example.recyclerviewtask.model.Section
+import com.example.recyclerviewtask.model.WeatherForecast
 
 /**
  * Simple [Fragment] subclass with [RecyclerView].
@@ -67,9 +72,17 @@ class WeatherForecastFragment : Fragment() {
                 data?.getIntExtra(FavouritesDialog.POSITION_ITEM_KEY, 0)?.let {
                     val remove = data.getBooleanExtra(FavouritesDialog.OPERATION_REMOVE_KEY, false)
                     if (remove) {
-                        recyclerViewAdapter.notifyItemRemoved(DataOperator.removeFromFavourites(it))
+                        recyclerViewAdapter.notifyItemRemoved(
+                            DataOperator.removeFromFavourites(
+                                it
+                            )
+                        )
                     } else {
-                        recyclerViewAdapter.notifyItemInserted(DataOperator.addToFavourites(it))
+                        recyclerViewAdapter.notifyItemInserted(
+                            DataOperator.addToFavourites(
+                                it
+                            )
+                        )
                     }
                 }
             }
@@ -142,7 +155,9 @@ class WeatherForecastFragment : Fragment() {
                     if (position != RecyclerView.NO_POSITION) {
                         activity?.supportFragmentManager?.beginTransaction()?.replace(
                             R.id.fragment_container,
-                            ViewPagerFragment.newInstance((list[myViewHolder.adapterPosition] as WeatherForecast))
+                            ViewPagerFragment.newInstance(
+                                (list[myViewHolder.adapterPosition] as WeatherForecast)
+                            )
                         )?.addToBackStack(null)?.commit()
                     }
                 }
@@ -224,6 +239,8 @@ class WeatherForecastFragment : Fragment() {
         private const val VIEW_SECTION = 2
         private const val REQUEST_CODE_DIALOG = 123
         private const val TRANSITION_DURATION = 1000
+
+        fun newInstance() = WeatherForecastFragment()
     }
 }
 

@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.recyclerviewtask.R
+import com.example.recyclerviewtask.model.WeatherForecast
 
 /**
  * Simple [Fragment] subclass that displays info about the city.

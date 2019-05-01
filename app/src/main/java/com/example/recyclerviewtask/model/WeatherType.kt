@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.model
 
 /**
  * Enum to specify weather type.

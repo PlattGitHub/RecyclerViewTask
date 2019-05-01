@@ -1,8 +1,12 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.utils
 
-import com.example.recyclerviewtask.DataOperator.allItemsList
-import com.example.recyclerviewtask.DataOperator.favouritesList
-import com.example.recyclerviewtask.DataOperator.weatherWithSectionsList
+import com.example.recyclerviewtask.utils.DataOperator.allItemsList
+import com.example.recyclerviewtask.utils.DataOperator.favouritesList
+import com.example.recyclerviewtask.utils.DataOperator.weatherWithSectionsList
+import com.example.recyclerviewtask.data.sectionsList
+import com.example.recyclerviewtask.data.weatherForecastList
+import com.example.recyclerviewtask.model.ItemWeatherForecast
+import com.example.recyclerviewtask.model.WeatherForecast
 
 /**
  * Object that does all operations with data.

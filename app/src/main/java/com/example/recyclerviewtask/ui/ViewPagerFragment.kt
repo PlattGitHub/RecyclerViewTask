@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
-import com.example.recyclerviewtask.ViewPagerFragment.ParallaxViewPagerTransformer
-import com.example.recyclerviewtask.ViewPagerFragment.WeatherViewPagerAdapter
+import com.example.recyclerviewtask.R
+import com.example.recyclerviewtask.ui.ViewPagerFragment.ParallaxViewPagerTransformer
+import com.example.recyclerviewtask.ui.ViewPagerFragment.WeatherViewPagerAdapter
+import com.example.recyclerviewtask.model.WeatherForecast
 import com.google.android.material.tabs.TabLayout
 
 /**
@@ -38,7 +40,8 @@ class ViewPagerFragment : Fragment() {
             tabLayout = findViewById(R.id.tabLayout)
         }
 
-        (activity as? AppCompatActivity)?.supportActionBar?.elevation = TOOLBAR_ELEVATION
+        (activity as? AppCompatActivity)?.supportActionBar?.elevation =
+            TOOLBAR_ELEVATION
 
         item = arguments?.getParcelable(ITEM_KEY)
         item?.let {
@@ -83,10 +86,12 @@ class ViewPagerFragment : Fragment() {
             val imageView = view.findViewById<ImageView>(R.id.parallaxImageView)
             val pageWidth = view.width
             when {
-                position < NEGATIVE_POSITION -> view.alpha = VIEW_ALPHA_VALUE
+                position < NEGATIVE_POSITION -> view.alpha =
+                    VIEW_ALPHA_VALUE
                 position <= POSITIVE_POSITION -> imageView.translationX =
                     -position * (pageWidth / PAGE_WIDTH_DIVIDER)
-                else -> view.alpha = VIEW_ALPHA_VALUE
+                else -> view.alpha =
+                    VIEW_ALPHA_VALUE
             }
         }
     }

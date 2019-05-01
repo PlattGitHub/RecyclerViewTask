@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 import android.app.Activity
 import android.app.Dialog
@@ -6,6 +6,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.example.recyclerviewtask.R
+import com.example.recyclerviewtask.model.WeatherForecast
 
 /**
  * Simple [DialogFragment] subclass that helps user to decide if he wants to add/remove

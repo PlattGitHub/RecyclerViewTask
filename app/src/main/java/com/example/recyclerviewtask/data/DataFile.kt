@@ -1,4 +1,8 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.data
+
+import com.example.recyclerviewtask.model.Section
+import com.example.recyclerviewtask.model.WeatherForecast
+import com.example.recyclerviewtask.model.WeatherType
 
 
 /**

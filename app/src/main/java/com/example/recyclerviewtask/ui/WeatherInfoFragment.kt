@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.ui
 
 
 import android.os.Bundle
@@ -9,6 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.recyclerviewtask.R
+import com.example.recyclerviewtask.model.WeatherForecast
+import com.example.recyclerviewtask.model.WeatherType
 
 /**
  * Simple [Fragment] subclass that displays info about the weather.
@@ -39,13 +42,21 @@ class WeatherInfoFragment : Fragment() {
             context?.apply {
                 val drawable = when (it.weatherType) {
                     WeatherType.SUNNY ->
-                        ContextCompat.getDrawable(this, R.drawable.weather_sunny)
+                        ContextCompat.getDrawable(this,
+                            R.drawable.weather_sunny
+                        )
                     WeatherType.RAINY ->
-                        ContextCompat.getDrawable(this, R.drawable.weather_rainy)
+                        ContextCompat.getDrawable(this,
+                            R.drawable.weather_rainy
+                        )
                     WeatherType.THUNDER ->
-                        ContextCompat.getDrawable(this, R.drawable.weather_lightning)
+                        ContextCompat.getDrawable(this,
+                            R.drawable.weather_lightning
+                        )
                     WeatherType.CLOUDY ->
-                        ContextCompat.getDrawable(this, R.drawable.weather_cloudy)
+                        ContextCompat.getDrawable(this,
+                            R.drawable.weather_cloudy
+                        )
                 }
                 weatherImageView.setImageDrawable(drawable)
             }

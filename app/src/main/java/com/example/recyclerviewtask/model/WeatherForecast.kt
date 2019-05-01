@@ -1,4 +1,4 @@
-package com.example.recyclerviewtask
+package com.example.recyclerviewtask.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -18,17 +18,3 @@ data class WeatherForecast(
     val weatherTemp: Int,
     var isFavourite: Boolean = false
 ) : ItemWeatherForecast(false), Parcelable
-
-/**
- * Data class to display sections.
- *
- * @author Alexander Gorin
- */
-data class Section(val name: String) : ItemWeatherForecast(true)
-
-/**
- * Open class to show different items in RecyclerView.
- *
- * @author Alexander Gorin
- */
-open class ItemWeatherForecast(val isSection: Boolean)
