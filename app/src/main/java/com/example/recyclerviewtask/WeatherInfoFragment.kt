@@ -17,10 +17,10 @@ import androidx.fragment.app.Fragment
  */
 class WeatherInfoFragment : Fragment() {
 
-    lateinit var weatherImageView: ImageView
-    lateinit var weatherTempTextView: TextView
-    lateinit var weatherTypeTextView: TextView
-    var item: WeatherForecast? = null
+    private lateinit var weatherImageView: ImageView
+    private lateinit var weatherTempTextView: TextView
+    private lateinit var weatherTypeTextView: TextView
+    private var item: WeatherForecast? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

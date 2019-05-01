@@ -38,7 +38,7 @@ class ViewPagerFragment : Fragment() {
             tabLayout = findViewById(R.id.tabLayout)
         }
 
-        (activity as AppCompatActivity).supportActionBar?.elevation = 0f
+        (activity as? AppCompatActivity)?.supportActionBar?.elevation = TOOLBAR_ELEVATION
 
         item = arguments?.getParcelable(ITEM_KEY)
         item?.let {
@@ -80,12 +80,13 @@ class ViewPagerFragment : Fragment() {
     inner class ParallaxViewPagerTransformer : ViewPager.PageTransformer {
 
         override fun transformPage(view: View, position: Float) {
-            val dummyImageView = view.findViewById<ImageView>(R.id.parallaxImageView)
+            val imageView = view.findViewById<ImageView>(R.id.parallaxImageView)
             val pageWidth = view.width
             when {
-                position < -1 -> view.alpha = 1f
-                position <= 1 -> dummyImageView.translationX = -position * (pageWidth / 2)
-                else -> view.alpha = 1f
+                position < NEGATIVE_POSITION -> view.alpha = VIEW_ALPHA_VALUE
+                position <= POSITIVE_POSITION -> imageView.translationX =
+                    -position * (pageWidth / PAGE_WIDTH_DIVIDER)
+                else -> view.alpha = VIEW_ALPHA_VALUE
             }
         }
     }
@@ -100,5 +101,10 @@ class ViewPagerFragment : Fragment() {
         }
 
         private const val ITEM_KEY = "ITEM_KEY"
+        private const val TOOLBAR_ELEVATION = 0F
+        private const val NEGATIVE_POSITION = -1
+        private const val POSITIVE_POSITION = 1
+        private const val VIEW_ALPHA_VALUE = 1F
+        private const val PAGE_WIDTH_DIVIDER = 2
     }
 }
