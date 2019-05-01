@@ -44,7 +44,6 @@ class WeatherForecastFragment : Fragment() {
         }
 
         recyclerViewAdapter = WeatherForecastRecyclerViewAdapter()
-        //DataOperator.recyclerViewAdapter = recyclerViewAdapter
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(recyclerView.context)
