@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
+import com.example.recyclerviewtask.WeatherForecastFragment.*
 import com.example.recyclerviewtask.WeatherType.*
 
 /**
@@ -43,7 +44,7 @@ class WeatherForecastFragment : Fragment() {
         }
 
         recyclerViewAdapter = WeatherForecastRecyclerViewAdapter()
-        DataOperator.recyclerViewAdapter = recyclerViewAdapter
+        //DataOperator.recyclerViewAdapter = recyclerViewAdapter
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(recyclerView.context)
@@ -67,9 +68,9 @@ class WeatherForecastFragment : Fragment() {
                 data?.getIntExtra(FavouritesDialog.POSITION_ITEM_KEY, 0)?.let {
                     val remove = data.getBooleanExtra(FavouritesDialog.OPERATION_REMOVE_KEY, false)
                     if (remove) {
-                        DataOperator.removeFromFavourites(it)
+                        recyclerViewAdapter.notifyItemRemoved(DataOperator.removeFromFavourites(it))
                     } else {
-                        DataOperator.addToFavourites(it)
+                        recyclerViewAdapter.notifyItemInserted(DataOperator.addToFavourites(it))
                     }
                 }
             }
@@ -85,18 +86,22 @@ class WeatherForecastFragment : Fragment() {
         when (item?.itemId) {
             R.id.action_name_asc -> {
                 DataOperator.sortNameAsc()
+                recyclerViewAdapter.notifyDataSetChanged()
                 return true
             }
             R.id.action_name_desc -> {
                 DataOperator.sortNameDesc()
+                recyclerViewAdapter.notifyDataSetChanged()
                 return true
             }
             R.id.action_temp_asc -> {
                 DataOperator.sortTempAsc()
+                recyclerViewAdapter.notifyDataSetChanged()
                 return true
             }
             R.id.action_temp_desc -> {
                 DataOperator.sortTempDesc()
+                recyclerViewAdapter.notifyDataSetChanged()
                 return true
             }
             else -> return super.onOptionsItemSelected(item)

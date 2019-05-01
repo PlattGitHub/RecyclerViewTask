@@ -6,7 +6,6 @@ import com.example.recyclerviewtask.DataOperator.weatherWithSectionsList
 
 /**
  * Object that does all operations with data.
- * Has recycler's view adapter to notify about changes.
  * Has [weatherWithSectionsList] that contains all data, including sections.
  * Has [favouritesList] and [allItemsList] for better sorting system.
  *
@@ -14,7 +13,11 @@ import com.example.recyclerviewtask.DataOperator.weatherWithSectionsList
  */
 object DataOperator {
 
-    lateinit var recyclerViewAdapter: WeatherForecastFragment.WeatherForecastRecyclerViewAdapter
+    private const val FAV_POSITION_ALL = 1
+    private const val FAV_POSITION = 0
+    private const val SECTION_FAV_POSITION = 0
+    private const val SECTION_ALL_POSITION = 1
+
     val weatherWithSectionsList = arrayListOf<ItemWeatherForecast>()
     private val favouritesList = arrayListOf<WeatherForecast>()
     private val allItemsList = arrayListOf<WeatherForecast>()
@@ -23,12 +26,12 @@ object DataOperator {
 
     init {
         weatherWithSectionsList.apply {
-            add(0, sectionsList[0])
-            add(1, sectionsList[1])
+            add(SECTION_FAV_POSITION, sectionsList.first())
+            add(SECTION_ALL_POSITION, sectionsList.last())
             val favList = weatherForecastList.filter { it.isFavourite }
             favouritesList.addAll(favList)
             allItemsList.addAll(weatherForecastList)
-            addAll(1, favouritesList)
+            addAll(FAV_POSITION_ALL, favouritesList)
             addAll(indent, allItemsList)
         }
     }
@@ -36,34 +39,33 @@ object DataOperator {
     private fun addAllItemsToList() {
         weatherWithSectionsList.apply {
             clear()
-            add(0, sectionsList[0])
-            add(1, sectionsList[1])
-            addAll(1, favouritesList)
+            add(SECTION_FAV_POSITION, sectionsList.first())
+            add(SECTION_ALL_POSITION, sectionsList.last())
+            addAll(FAV_POSITION_ALL, favouritesList)
             addAll(indent, allItemsList)
-            recyclerViewAdapter.notifyDataSetChanged()
         }
     }
 
-    fun addToFavourites(position: Int) {
+    fun addToFavourites(position: Int): Int {
         val item = (weatherWithSectionsList[position] as WeatherForecast)
         val allItemsIndex = allItemsList.indexOf(item)
         allItemsList[allItemsIndex].isFavourite = true
-        favouritesList.add(0, item.apply {
-            isFavourite = true
-        })
-        weatherWithSectionsList.add(1, item)
-        recyclerViewAdapter.notifyItemInserted(1)
+        item.isFavourite = true
+        favouritesList.add(FAV_POSITION, item)
+        weatherWithSectionsList.add(FAV_POSITION_ALL, item)
+        return FAV_POSITION_ALL
     }
 
-    fun removeFromFavourites(position: Int) {
+    fun removeFromFavourites(position: Int): Int {
         val item = (weatherWithSectionsList[position] as WeatherForecast)
         val favIndex = favouritesList.indexOf(item)
         favouritesList.removeAt(favIndex)
         val allItemsIndex = allItemsList.indexOf(item)
         allItemsList[allItemsIndex].isFavourite = false
         item.isFavourite = false
-        weatherWithSectionsList.removeAt(favIndex + 1)
-        recyclerViewAdapter.notifyItemRemoved(favIndex + 1)
+        val removeAtIndex = favIndex + 1
+        weatherWithSectionsList.removeAt(removeAtIndex)
+        return removeAtIndex
     }
 
     fun sortNameAsc() {

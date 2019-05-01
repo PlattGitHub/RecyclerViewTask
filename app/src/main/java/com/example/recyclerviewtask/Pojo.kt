@@ -32,12 +32,3 @@ data class Section(val name: String) : ItemWeatherForecast(true)
  * @author Alexander Gorin
  */
 open class ItemWeatherForecast(val isSection: Boolean)
-
-/**
- * Enum to specify weather type.
- *
- * @author Alexander Gorin
- */
-enum class WeatherType {
-    RAINY, THUNDER, CLOUDY, SUNNY
-}
