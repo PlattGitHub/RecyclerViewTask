@@ -17,10 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.fragment_container,
-                    WeatherForecastFragment.newInstance()
-                ).commit()
+                .replace(R.id.fragment_container, WeatherForecastFragment.newInstance()).commit()
         }
     }
+
 }
